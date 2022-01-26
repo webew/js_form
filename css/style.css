@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 40vw;
+    height: 300px;
+    margin-top: 10vh;
+    padding: 40px;
+    background-color: white;
+}
+#divSubmit{
+    text-align: center;
+}
