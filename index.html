@@ -9,23 +9,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/main.js"></script>
+    <!-- <script defer src="js/main.js"></script> -->
 </head>
 
 <body>
-    <form id="connexionForm" action="php/handleForm.php">
+    <form id="connexionForm" action="php/handleForm.php" method="POST">
         <div class="mb-3">
-            <label for="nom" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="inputNom" name="nom">
+            <label for="identifiant" class="form-label">Identifiant</label>
+            <input type="text" class="form-control" id="identifiant" name="identifiant">
         </div>
         <div class="mb-3">
-            <label for="prenom" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="inputPrenom" name="prenom">
+            <label for="mdp" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="mdp" name="mdp">
+        </div>
+        <div class="mb-3">
+            <label for="mdpRepeat" class="form-label">Répéter le mot de passe</label>
+            <input type="password" class="form-control" id="mdpRepeat" name="mdpRepeat">
+            <span class="errorSpan"></span>
         </div>
         <div id="divSubmit">
-            <input type="submit" class="btn btn-success" value="Envoyer">
+            <input id="inputSubmit" type="submit" class="btn btn-success" value="Connexion" disabled>
         </div>
     </form>
+
+    <script>
+        const inputMdp = document.querySelector('#mdp');
+        const mdpRepeat = document.querySelector('#mdpRepeat');
+        const inputSubmit = document.querySelector('#inputSubmit');
+
+        mdpRepeat.addEventListener('keyup', function (e) { // gestion de la soumission
+            e.preventDefault(); // annulation du comportement par défaut
+            if (this.value != inputMdp.value) { // si les mots de passe diffèrent
+                this.nextElementSibling.textContent = 'Les mots de passe ne correspondent pas.';
+                inputSubmit.setAttribute("disabled", "disabled");
+            } else { // si les mots de passe sont identiques
+                this.nextElementSibling.textContent = '';
+                inputSubmit.removeAttribute("disabled");
+            }
+        });
+    </script>
 </body>
 
 </html>
